@@ -134,7 +134,7 @@ right: 180px !important;
 
 &::-webkit-scrollbar-thumb {
   background: #E50914;
-//   visibility: hidden;
+  visibility: hidden;
   border-radius: 25px;
   width: 40px;
   &:hover {
@@ -268,5 +268,12 @@ $font-sizes2:(
 }
 
 .hhh{
-    height: 300px !important;
+    height: 360px !important;
+}
+
+.hj{
+    height: 100% !important;
+}
+.bg-none{
+    background: none !important;
 }

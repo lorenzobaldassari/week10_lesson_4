@@ -73,7 +73,7 @@ const Section = (props) => {
                   alt=""
                   className="m-0 p-0"
                 />
-                <Button className="my-2"
+                <Button className="my-2 fw-bold"
                   variant="info"
                   onClick={() =>
                     navigate(`/MovieDetail/${film.imdbID}`)

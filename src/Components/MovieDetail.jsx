@@ -102,20 +102,30 @@ const MoviesDetail = () => {
     <>
       {/* <h1>siamo in movie details</h1># */}
       <Container>
-        <Row className="justify-content-center">
-          <Col sm={4} className="offset-">
-            <Card className="bg-secondary rounded-3">
-              <Card.Img variant="top" src={obj.Poster} />
-              <Card.Body className="">
-                <Card.Title className="fs-1 fw-bold text-white">{obj.Title}</Card.Title>
-                <Card.Text className="fs-5 text-white">{obj.Plot}</Card.Text>
-                <Button variant="primary" onClick={() => navigate(`/`)}>
-                  HOME
-                </Button>
-              </Card.Body>
+        <Row className="justify-content-cente">
+          <Col sm={12} className="">
+            <Card className=" rounded-3 bg-none">
+              <Row>
+                <Col sm={4} className="offset-1 bg-sqecondary p-0">
+                  <Card.Img variant="top" className="w-100" src={obj.Poster} />
+                </Col>
+                <Col sm={6} className="bg-secondary">
+                  <Card.Body className="d-flex flex-column justify-content-around hj align-items-center">
+                    <Card.Title className="fs-1 fw-bold text-white ">
+                      {obj.Title}
+                    </Card.Title>
+                    <Card.Text className="fs-5 text-center text-white">
+                      {obj.Plot}
+                    </Card.Text>
+                    <Button variant="primary" className="w-20" onClick={() => navigate(`/`)}>
+                      HOME
+                    </Button>
+                  </Card.Body>
+                </Col>
+              </Row>
             </Card>
           </Col>
-          <Col sm={6}>
+          <Col sm={10} className="offset-1">
             <div className="my-3">
               <Form onSubmit={sendComment}>
                 <Form.Group className="mb-2">
@@ -134,29 +144,31 @@ const MoviesDetail = () => {
                     }
                   />
                 </Form.Group>
-                <Form.Group className="mb-2">
-                  <Form.Label className="text-white">Valutazione</Form.Label>
-                  <Form.Control
-                  className="fw-bold fs-4 bg-info w-10 text-center"
-                    as="select"
-                    value={commentObj.rate}
-                    onChange={(e) =>
-                      setCommentObj({
-                        ...commentObj,
-                        rate: e.target.value,
-                      })
-                    }
-                  >
-                    <option className="fw-bold">1</option>
-                    <option className="fw-bold">2</option>
-                    <option className="fw-bold">3</option>
-                    <option className="fw-bold">4</option>
-                    <option className="fw-bold">5</option>
-                  </Form.Control>
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                  Invia
-                </Button>
+                <div className="d-flex w-100 justify-content-around align-items-center">
+                  <Form.Group className="mb-2">
+                    <Form.Label className="text-white">Valutazione</Form.Label>
+                    <Form.Control
+                      className="fw-bold fs-4 bg-info w-50 text-center"
+                      as="select"
+                      value={commentObj.rate}
+                      onChange={(e) =>
+                        setCommentObj({
+                          ...commentObj,
+                          rate: e.target.value,
+                        })
+                      }
+                    >
+                      <option className="fw-bold">1</option>
+                      <option className="fw-bold">2</option>
+                      <option className="fw-bold">3</option>
+                      <option className="fw-bold">4</option>
+                      <option className="fw-bold">5</option>
+                    </Form.Control>
+                  </Form.Group>
+                  <Button variant="primary" type="submit" className="w-20 mt-4">
+                    Invia
+                  </Button>
+                </div>
               </Form>
             </div>
             <div>
@@ -164,7 +176,7 @@ const MoviesDetail = () => {
               <ListGroup className="mb-3">
                 {reservation.map((comment) => {
                   return (
-                    <ListGroup.Item variant="primary" key={comment._id}>
+                    <ListGroup.Item className="fw-bold fs-4 bg-info" key={comment._id}>
                       {comment.comment}*--*{comment.rate}
                     </ListGroup.Item>
                   );

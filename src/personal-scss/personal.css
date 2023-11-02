@@ -12250,6 +12250,7 @@ body {
 }
 #row::-webkit-scrollbar-thumb {
   background: #E50914;
+  visibility: hidden;
   border-radius: 25px;
   width: 40px;
 }
@@ -12373,4 +12374,16 @@ body {
   height: 100vh !important;
   display: flex;
   flex-direction: column;
+}
+
+.hhh {
+  height: 360px !important;
+}
+
+.hj {
+  height: 100% !important;
+}
+
+.bg-none {
+  background: none !important;
 }/*# sourceMappingURL=personal.css.map */
