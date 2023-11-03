@@ -12166,6 +12166,11 @@ body {
   min-height: 100vh;
 }
 
+@media screen and (max-width: 992px) {
+  body {
+    background: linear-gradient(black 0%, #1f1e1e 7%, #1f1e1e 93%, black) !important;
+  }
+}
 @media screen and (min-width: 992px) {
   body {
     background: linear-gradient(black 0%, #1f1e1e 40%, black 100%) !important;
@@ -12206,6 +12211,13 @@ body {
   background: none !important;
 }
 
+@media screen and (min-width: 576px) {
+  .rowWidth {
+    margin: 0 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
 @media screen and (max-width: 576px) {
   .rowWidth {
     width: 80% !important;
@@ -12376,14 +12388,20 @@ body {
   flex-direction: column;
 }
 
-.hhh {
-  height: 360px !important;
-}
-
 .hj {
   height: 100% !important;
 }
 
 .bg-none {
   background: none !important;
+}
+
+.position {
+  left: 540px !important;
+  top: 50px;
+  position: absolute;
+}
+
+.button1 {
+  height: 40px;
 }/*# sourceMappingURL=personal.css.map */

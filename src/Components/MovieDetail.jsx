@@ -5,15 +5,17 @@ import Card from "react-bootstrap/Card";
 import { Container, Row, Col } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
+import Section from "./Home-component/Section";
 
 const MoviesDetail = () => {
   const params = useParams();
   const location = useLocation();
-
+  const [c, setC] = useState([]);
   const navigate = useNavigate();
   const [obj, setObj] = useState({});
   const [reservation, setReservation] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [title, setTitle] = useState();
 
   const [commentObj, setCommentObj] = useState({
     comment: ``,
@@ -33,6 +35,14 @@ const MoviesDetail = () => {
       })
       .then((data) => {
         console.log(`dati recuperati`, data);
+
+        const a = data.Title.split(` `);
+
+        let b = a.slice(0, 1);
+
+        setC(b);
+
+        // setC(b);
         setObj(data);
       })
       .catch((error) => {
@@ -62,6 +72,7 @@ const MoviesDetail = () => {
           rate: 1,
           elementId: params.id,
         });
+        getStuff()
       } else {
         throw new Error("Qualcosa è andato storto");
       }
@@ -84,6 +95,7 @@ const MoviesDetail = () => {
         }
       })
       .then((data) => {
+        console.log(`commenti`,data);
         setReservation(data);
         setLoading(false);
       })
@@ -96,20 +108,18 @@ const MoviesDetail = () => {
   useEffect(() => {
     getComment();
     getStuff();
-  }, [params]);
+
+  }, [params.id]);
 
   return (
     <>
       {/* <h1>siamo in movie details</h1># */}
-      <Container>
-        <Row className="justify-content-cente">
+      <Container fluid className="mb-5">
+        <Row className="justify-content-cente w-100 ">
           <Col sm={12} className="">
             <Card className=" rounded-3 bg-none">
               <Row>
-                <Col sm={4} className="offset-1 bg-sqecondary p-0">
-                  <Card.Img variant="top" className="w-100" src={obj.Poster} />
-                </Col>
-                <Col sm={6} className="bg-secondary">
+                <Col sm={7} className="ms-5">
                   <Card.Body className="d-flex flex-column justify-content-around hj align-items-center">
                     <Card.Title className="fs-1 fw-bold text-white ">
                       {obj.Title}
@@ -117,10 +127,21 @@ const MoviesDetail = () => {
                     <Card.Text className="fs-5 text-center text-white">
                       {obj.Plot}
                     </Card.Text>
-                    <Button variant="primary" className="w-20" onClick={() => navigate(`/`)}>
+                    <Button
+                      variant="primary"
+                      className="w-20"
+                      onClick={() => navigate(`/`)}
+                    >
                       HOME
                     </Button>
                   </Card.Body>
+                </Col>
+                <Col sm={4} className="offset- ms-5 bg-sqecondary p-0 d-flex justify-content-center">
+                  <Card.Img
+                    variant="top"
+                    className="w-80 rounded-5"
+                    src={obj.Poster}
+                  />
                 </Col>
               </Row>
             </Card>
@@ -176,7 +197,10 @@ const MoviesDetail = () => {
               <ListGroup className="mb-3">
                 {reservation.map((comment) => {
                   return (
-                    <ListGroup.Item className="fw-bold fs-4 bg-info" key={comment._id}>
+                    <ListGroup.Item
+                      className="fw-bold fs-4 bg-info"
+                      key={comment._id}
+                    >
                       {comment.comment}*--*{comment.rate}
                     </ListGroup.Item>
                   );
@@ -186,6 +210,9 @@ const MoviesDetail = () => {
           </Col>
         </Row>
       </Container>
+      {obj.Title && (
+        <Section title={`Altro come ${obj.Title}`} searchParameters={c} />
+      )}
     </>
   );
 };

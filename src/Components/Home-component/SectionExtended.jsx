@@ -4,15 +4,12 @@ import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import { Link, useNavigate } from "react-router-dom";
 
-const Section = (props) => {
+const SectionExtended = (props) => {
   // const [arrowDisable, setArrowDisable] = useState(true);
-
+  const navigate = useNavigate();
   const [hide, setHide] = useState(false);
   const [films, setFilms] = useState([]);
   const [msg, setMsg] = useState(false);
-  const navigate= useNavigate()
-
-
 
   const getComment = () => {
     fetch(`http://www.omdbapi.com/?apikey=635744ab&s=${props.searchParameters}`)
@@ -60,7 +57,7 @@ const Section = (props) => {
           />
         )}
         <Row
-          className=" g-2  rowWidth d-flex position-relative mx-0 px-0"
+          className=" g-2  d-flex position-relative mx-0 px-0"
           itemRef="mm"
           id="row"
         >
@@ -69,7 +66,7 @@ const Section = (props) => {
               return (
                 <Col
                   key={film.imdbID}
-                  className=" p-0 mx-1  rounded-4 hhh col-12 col-sm-6 col-md-3 col-lg-2  d-flex align-items-center bg-none justify-content-center"
+                  className=" p-0 mx-  rounded-4 hhh col-12 col-sm-6 col-md-3 col-lg-2  d-flex align-items-center bg-none justify-content-center"
                 >
                   <Link
                     to={`/MovieDetail/${film.imdbID}`}
@@ -98,7 +95,13 @@ const Section = (props) => {
               <Alert>
                 Attenzione! ricerca non andata a buon fine! Torna alla home
               </Alert>
-              <Button onClick={()=>{navigate(`/`)}}>Home</Button>
+              <Button
+                onClick={() => {
+                  navigate(`/`);
+                }}
+              >
+                Home
+              </Button>
             </div>
           )}
         </Row>
@@ -107,4 +110,4 @@ const Section = (props) => {
   );
 };
 
-export default Section;
+export default SectionExtended;
